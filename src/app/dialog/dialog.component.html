@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Product Details <span [style.display]="status ? 'none':'inline'" class="text-danger">Only Cost Update *</span></h1>
+<div mat-dialog-content>
+    <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+        <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input formControlName="name" minlength="5" maxlength="60" matInput placeholder="Product Name must be greater than 5 characters" type="text" required [readonly]="!status">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Cost</mat-label>
+            <input formControlName="cost" min="1" maxlength="4" matInput placeholder="Enter Product Cost" type="number" required>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input formControlName="description" matInput placeholder="Enter Product Description" required [readonly]="!status">
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+<button mat-raised-button color="warn" mat-dialog-close>Close</button>
+<button [style.display]="!status ? 'none':'inline'" mat-raised-button color="primary" [routerLink]="'post/create'" mat-dialog-close [disabled]="productForm.invalid" (click)="addProduct()">Save</button>
+<button [style.display]="status ? 'none':'inline'" mat-raised-button color="primary" mat-dialog-close  (click)="updateproduct()">Update</button>
+</div>
