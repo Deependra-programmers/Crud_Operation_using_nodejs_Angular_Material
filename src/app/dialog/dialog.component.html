@@ -3,20 +3,24 @@
     <form [formGroup]="productForm" (ngSubmit)="addProduct()">
         <mat-form-field appearance="outline">
             <mat-label>Name</mat-label>
-            <input formControlName="name" minlength="5" maxlength="60" matInput placeholder="Product Name must be greater than 5 characters" type="text" required [readonly]="!status">
+            <input formControlName="name" [class.is-invalid]="productForm.get('name').invalid && productForm.get('name').touched" minlength="5" maxlength="60" matInput placeholder="Product Name must be greater than 5 characters" type="text" required [readonly]="!status">
+            <small [class.d-none]="productForm.get('name').valid || productForm.get('name').untouched" class="text-danger">Username required and must be greater than 5 letter</small>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Cost</mat-label>
             <input formControlName="cost" min="1" maxlength="4" matInput placeholder="Enter Product Cost" type="number" required>
+            <small [class.d-none]="productForm.get('cost').valid || productForm.get('cost').untouched" class="text-danger">Cost required</small>
+        
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Description</mat-label>
             <input formControlName="description" matInput placeholder="Enter Product Description" required [readonly]="!status">
+            <small [class.d-none]="productForm.get('description').valid || productForm.get('description').untouched" class="text-danger">Description required</small>
         </mat-form-field>
+        <mat-dialog-actions [align]="'end'">
+            <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+            <button [style.display]="!status ? 'none':'inline'" mat-raised-button color="primary" [routerLink]="'post/create'" mat-dialog-close [disabled]="productForm.invalid" (click)="addProduct()" type="submit">Save</button>
+            <button [style.display]="status ? 'none':'inline'" mat-raised-button color="primary" mat-dialog-close [disabled]="productForm.invalid" (click)="updateproduct()">Update</button>
+            </mat-dialog-actions>
     </form>
-</div>
-<div mat-dialog-actions [align]="'end'">
-<button mat-raised-button color="warn" mat-dialog-close>Close</button>
-<button [style.display]="!status ? 'none':'inline'" mat-raised-button color="primary" [routerLink]="'post/create'" mat-dialog-close [disabled]="productForm.invalid" (click)="addProduct()">Save</button>
-<button [style.display]="status ? 'none':'inline'" mat-raised-button color="primary" mat-dialog-close  (click)="updateproduct()">Update</button>
 </div>

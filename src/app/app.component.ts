@@ -59,7 +59,7 @@ export class AppComponent {
 
   // Delete Data in the Table
 
-  deleteData(id:any){
+   deleteData(id:any){
    this.service.DeleteData(id).subscribe((res)=>{
       console.log(res,"deleteid==>");
       this.snackbarmsg='Product Delete successfully';

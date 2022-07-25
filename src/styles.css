@@ -4,11 +4,11 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .success.mat-snack-bar-container{
-    background-color: green;
-    color: white;
+background-color:black;
+color:lightgreen;
 }
 
 .error.mat-snack-bar-container{
-    background-color: red;
-    color: white;
+background-color:black;
+color: red;
 }
